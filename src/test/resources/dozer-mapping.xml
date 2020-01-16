@@ -11,8 +11,8 @@
     </configuration>
 
     <mapping>
-        <class-a>com.baeldung.performancetests.model.source.SourceOrder</class-a>
-        <class-b>com.baeldung.performancetests.model.destination.Order</class-b>
+        <class-a>com.jc.performancetests.model.source.SourceOrder</class-a>
+        <class-b>com.jc.performancetests.model.destination.Order</class-b>
         <field>
             <a>status</a>
             <b>orderStatus</b>
