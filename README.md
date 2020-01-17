@@ -17,7 +17,7 @@ Dozer
  To run the performance benchmarks:
 
 1: `mvn clean install`   
-2: `java -jar target/benchmarks.jar`
+2: `java -jar main/target/benchmarks.jar`
 
 ### 结果
 
