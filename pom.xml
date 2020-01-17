@@ -3,8 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>performance-tests</artifactId>
     <version>1.0</version>
+    <modules>
+        <module>converterKt</module>
+        <module>converter</module>
+        <module>main</module>
+        <module>base</module>
+    </modules>
     <name>performance-tests</name>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <groupId>com.jc</groupId>
 
 

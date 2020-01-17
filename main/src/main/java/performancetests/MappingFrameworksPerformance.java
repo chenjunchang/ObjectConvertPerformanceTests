@@ -1,10 +1,11 @@
-package com.jc.performancetests;
+package performancetests;
 
 import com.jc.performancetests.beancopier.BeanCopierConverter;
 import com.jc.performancetests.dozer.DozerConverter;
 import com.jc.performancetests.fastjson.FastjsonConverter;
 import com.jc.performancetests.gson.GsonConverter;
 import com.jc.performancetests.hardcode.HardcodeConverter;
+import com.jc.performancetests.hardcode.KtHardcodeConverter;
 import com.jc.performancetests.jackson.JacksonConverter;
 import com.jc.performancetests.jmapper.JMapperConverter;
 import com.jc.performancetests.mapstruct.MapStructConverter;
@@ -70,6 +71,7 @@ public class MappingFrameworksPerformance {
     private static final MapStructConverter MAP_STRUCT_CONVERTER = MapStructConverter.MAPPER;
     private static final BeanCopierConverter BEAN_COPIER_CONVERTER = new BeanCopierConverter();
     private static final HardcodeConverter HARDCODE_CONVERTER = new HardcodeConverter();
+    private static final KtHardcodeConverter KT_HARDCODE_CONVERTER = new KtHardcodeConverter();
     private static SourceOrder sourceOrder = null;
     private static SourceCode sourceCode = null;
 
@@ -130,6 +132,7 @@ public class MappingFrameworksPerformance {
         Order order9 = BEAN_COPIER_CONVERTER.convert(sourceOrder);
         Order order10 = JACKSON_CONVERTER.convert(sourceOrder);
         Order order11 = HARDCODE_CONVERTER.convert(sourceOrder);
+        Order order12 = KT_HARDCODE_CONVERTER.convert(sourceOrder);
 
         Assert.isTrue(order1.hashCode() == order2.hashCode());
         Assert.isTrue(order2.hashCode() == order3.hashCode());
@@ -141,6 +144,7 @@ public class MappingFrameworksPerformance {
         Assert.isTrue(order8.hashCode() == order9.hashCode());
         Assert.isTrue(order9.hashCode() == order10.hashCode());
         Assert.isTrue(order10.hashCode() == order11.hashCode());
+        Assert.isTrue(order11.hashCode() == order12.hashCode());
     }
 
     @Benchmark
@@ -209,6 +213,12 @@ public class MappingFrameworksPerformance {
         return HARDCODE_CONVERTER.convert(sourceOrder);
     }
 
+    @Benchmark
+    @Group("realLifeTest")
+    public Order ktHardcodeRealLifeBenchmark() {
+        return KT_HARDCODE_CONVERTER.convert(sourceOrder);
+    }
+
 
     @Benchmark
     @Group("simpleTest")
@@ -274,6 +284,12 @@ public class MappingFrameworksPerformance {
     @Group("simpleTest")
     public DestinationCode hardcodeSimpleBenchmark() {
         return HARDCODE_CONVERTER.convert(sourceCode);
+    }
+
+    @Benchmark
+    @Group("simpleTest")
+    public DestinationCode ktHardcodeSimpleBenchmark() {
+        return KT_HARDCODE_CONVERTER.convert(sourceCode);
     }
 
 }
